@@ -1,12 +1,10 @@
 package com.tencent.mobileqqoptimizer
 
-import android.graphics.Rect
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.text.Html
-import android.text.Layout
 import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
