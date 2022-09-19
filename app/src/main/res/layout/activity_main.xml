@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  tools:context=".MainActivity">
+
+  <Button
+    android:id="@+id/trigger_optimizer_btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="@string/trigger_optimizer" />
+
+  <TextView
+    android:id="@+id/trigger_optimizer_log_tv"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
+    android:background="@drawable/ic_launcher_background"
+    android:gravity="start"
+    android:scrollbarFadeDuration="1000"
+    android:scrollbars="vertical"
+    android:singleLine="false"
+    android:text="@string/mobile_qq_optimizer_init_text" />
+  <TextView
+    android:id="@+id/optimizer_doc_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

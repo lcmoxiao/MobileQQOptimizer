@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">手Q性能优化工具</string>
+  <string name="trigger_optimizer">优化手Q(耗时约 1 分半)</string>
+  <string name="mobile_qq_optimizer_init_text">正在检测设备是否支持主动优化</string>
+</resources>
