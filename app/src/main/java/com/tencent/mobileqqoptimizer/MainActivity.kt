@@ -59,7 +59,8 @@ class MainActivity : AppCompatActivity() {
         docTv = findViewById(R.id.optimizer_doc_tv)
         val docStr = "<br>QQ : 735763610" +
                 "<br>邮箱: eeeli@tencent.com" +
-                "<br><a href = 'https://docs.qq.com/doc/DRWRjU3pwQ3NBem9m'>原理文档 by eeeli</a>"
+                "<br><a href = 'https://docs.qq.com/doc/DRWRjU3pwQ3NBem9m'>原理文档 by eeeli</a>" +
+                "<br><a href = 'https://github.com/lcmoxiao/MobileQQOptimizer.git'>源代码</a>"
         docTv.text = Html.fromHtml(docStr)
         docTv.movementMethod = LinkMovementMethod.getInstance()
 
