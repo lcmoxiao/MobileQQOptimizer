@@ -1,10 +1,12 @@
 package com.tencent.mobileqqoptimizer
 
+import android.graphics.Rect
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
 import android.text.Html
+import android.text.Layout
 import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -57,7 +59,10 @@ class MainActivity : AppCompatActivity() {
         logTv.movementMethod = ScrollingMovementMethod.getInstance()
 
         docTv = findViewById(R.id.optimizer_doc_tv)
-        val docStr = "<br>QQ : 735763610" +
+        val docStr = "优化期间机器可能表现为轻微发烫" +
+                "<br>优化完成后即可卸载此 app" +
+                "<br>有问题可联系：" +
+                "<br>QQ : 735763610" +
                 "<br>邮箱: eeeli@tencent.com" +
                 "<br><a href = 'https://docs.qq.com/doc/DRWRjU3pwQ3NBem9m'>原理文档 by eeeli</a>" +
                 "<br><a href = 'https://github.com/lcmoxiao/MobileQQOptimizer.git'>源代码</a>"
@@ -90,6 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun testCompileFunction() {
         Thread {
             try {
+                logTv.text = "${getTime()} 正在检测设备是否支持工具优化..."
                 val cmd = "cmd package compile -m speed-profile -f com.tencent.mobileqqoptimizer"
                 appendLogAndScroll("优化可行性验证中，请稍等。")
 
@@ -109,8 +115,9 @@ class MainActivity : AppCompatActivity() {
                 p.waitFor()
 
                 if (isSuccess) {
-                    appendLogAndScroll("机型可行性验证成功。点击【优化手Q】，即刻开始优化手Q性能。")
-                    appendLogAndScroll("通过系统设置页退出手Q后触发优化可增加成功概率。")
+                    appendLogAndScroll("机型可行性验证成功~")
+                    appendLogAndScroll("点击【优化手Q】即刻开始优化手Q性能")
+                    appendLogAndScroll("通过系统设置页关闭 APP 可增加成功率以及转化速度")
                 } else {
                     runOnUiThread {
                         btn.isEnabled = false
@@ -188,10 +195,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun appendLogAndScroll(log: String) {
         logTv.append("\n${getTime()} $log")
-        val offset = logTv.lineCount * logTv.lineHeight
-        val factOffset = logTv.height - logTv.lineHeight
-        if (offset > factOffset) {
-            logTv.scrollBy(0, logTv.lineHeight)
+        val lineHeight = (logTv.lineHeight + logTv.lineSpacingExtra).toInt()
+        val offset = logTv.lineCount * lineHeight
+        val factOffset = logTv.height - lineHeight
+        Log.i(TAG, "logTv.lineHeight ${logTv.lineHeight}, offset $offset, factOffset $factOffset, lineHeight $lineHeight")
+        if (offset != 0 && offset > factOffset) {
+            logTv.scrollBy(0, lineHeight)
         }
     }
 

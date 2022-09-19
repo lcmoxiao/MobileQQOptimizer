@@ -11,6 +11,7 @@
     android:id="@+id/trigger_optimizer_btn"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
     android:layout_gravity="center"
     android:text="@string/trigger_optimizer" />
 
@@ -18,18 +19,22 @@
     android:id="@+id/trigger_optimizer_log_tv"
     android:layout_width="match_parent"
     android:layout_height="300dp"
+    android:layout_marginTop="30dp"
     android:layout_gravity="center"
-    android:layout_marginHorizontal="20dp"
-    android:background="@drawable/ic_launcher_background"
+    android:layout_marginHorizontal="30dp"
+    android:background="#03A9F4"
     android:gravity="start"
     android:scrollbarFadeDuration="1000"
     android:scrollbars="vertical"
     android:singleLine="false"
-    android:text="@string/mobile_qq_optimizer_init_text" />
+    android:textColor="@color/white"
+    android:textSize="14sp" />
+
   <TextView
     android:id="@+id/optimizer_doc_tv"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center" />
-
+    android:layout_marginTop="30dp"
+    android:layout_marginEnd="20dp"
+    android:layout_gravity="end" />
 </androidx.appcompat.widget.LinearLayoutCompat>
