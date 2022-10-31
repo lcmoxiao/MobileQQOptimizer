@@ -1,9 +1,6 @@
 package com.tencent.mobileqqoptimizer
 
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
+import android.os.*
 import android.text.Html
 import android.text.method.LinkMovementMethod
 import android.text.method.ScrollingMovementMethod
@@ -94,7 +91,13 @@ class MainActivity : AppCompatActivity() {
         Thread {
             try {
                 logTv.text = "${getTime()} 正在检测设备是否支持工具优化..."
-                val cmd = "cmd package compile -m speed-profile -f com.tencent.mobileqqoptimizer"
+                val cmd =
+                    if (Build.VERSION.SDK_INT >= 31 || Build.BRAND.equals("oppo", true)) {
+                        "adb shell pm bg-dexopt-job com.tencent.mobileqq"
+                    } else {
+                        "cmd package compile -m speed-profile -f com.tencent.mobileqqoptimizer"
+                    }
+
                 appendLogAndScroll("优化可行性验证中，请稍等。")
 
                 val p = Runtime.getRuntime().exec(cmd)
