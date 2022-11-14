@@ -69,7 +69,12 @@ class MainActivity : AppCompatActivity() {
             Log.i(TAG, "doDex2oat start.")
             Thread {
                 try {
-                    val cmd = "cmd package compile -m speed-profile -f com.tencent.mobileqq"
+                    val cmd =
+                        if (Build.VERSION.SDK_INT >= 31 || Build.BRAND.equals("oppo", true)) {
+                            "pm bg-dexopt-job com.tencent.mobileqq"
+                        } else {
+                            "cmd package compile -m speed-profile -f com.tencent.mobileqq"
+                        }
                     appendLogAndScroll("正在执行：$cmd，请稍等。")
                     beforeOptimizerExecute()
 
@@ -93,8 +98,10 @@ class MainActivity : AppCompatActivity() {
                 logTv.text = "${getTime()} 正在检测设备是否支持工具优化..."
                 val cmd =
                     if (Build.VERSION.SDK_INT >= 31 || Build.BRAND.equals("oppo", true)) {
-                        "adb shell pm bg-dexopt-job com.tencent.mobileqq"
+                        Log.i(TAG, "使用 bg 命令")
+                        "pm bg-dexopt-job com.tencent.mobileqqoptimizer"
                     } else {
+                        Log.i(TAG, "使用 compile 命令")
                         "cmd package compile -m speed-profile -f com.tencent.mobileqqoptimizer"
                     }
 
@@ -110,6 +117,14 @@ class MainActivity : AppCompatActivity() {
                         }
                         if (line == "Success") {
                             isSuccess = true
+                        }
+                    }
+                }
+                BufferedReader(InputStreamReader(p.errorStream)).use { bufferReader ->
+                    var line = ""
+                    while (bufferReader.readLine()?.also { line = it } != null) {
+                        runOnUiThread {
+                            Log.e(TAG, line)
                         }
                     }
                 }
