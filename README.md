@@ -28,7 +28,7 @@ Success
 ~~~
 oppo 的部分系统会显示 Failure:xxxx，此时需要使用下述命令
 ~~~shell
-adb shell pm bg-dexopt-job com.tencent.mobileqq。
+adb shell pm bg-dexopt-job com.tencent.mobileqq
 ~~~
 3. 待上述优化显示 Success 之后，可即通过下述指令重启手Q 
 ~~~shell
